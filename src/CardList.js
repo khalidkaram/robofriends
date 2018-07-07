@@ -1,21 +1,11 @@
 import React from 'react';
 import Card from "./Card";
-import {robots} from "./robots";
 
-export default class CardList extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            cardsArray: robots.map((user) => {
-                return this.renderCard(user.id, user.name, user.email);
-            })
-        }
-    }
-
+export default class CardList extends React.Component {
     renderCard(id, name, email) {
         return (
             <div key={id} className="column is-3">
-                <Card id={id} name={name} email={email} />
+                <Card id={id} name={name} email={email}/>
             </div>
         );
     }
@@ -23,7 +13,11 @@ export default class CardList extends React.Component{
     render() {
         return (
             <div className="columns is-multiline">
-                {this.state.cardsArray}
+                {
+                    this.props.robots.map((user) => {
+                        return this.renderCard(user.id, user.name, user.email);
+                    })
+                }
             </div>
         );
     }
